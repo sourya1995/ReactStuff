@@ -5,18 +5,18 @@ import Card from './components/Card';
 
 function App() {
 
-  function handleClick() {
-    let randomNum = Math.floor(Math.random() * 3) + 1;
-    console.log(randomNum);
-    let userInput = prompt("type a number");
-    alert(`Computer Number: ${randomNum}, Your guess ${userInput}`);
-  }
+  const [fruits] = React.useState([
+    { fruitName: 'apple', id: 1 },
+    { fruitName: 'apple', id: 2 },
+    { fruitName: 'plum', id: 3 },
+  ]);
   return (
     <div className="App">
-      <h1>Task: Add a button and handle a click event</h1>
-      <button onClick={handleClick}>Guess a number between 1 and 3</button>
+      <h1>Where should the state go?</h1>
+      <Fruits fruits={fruits} />
+      <FruitsCounter fruits={fruits} />
     </div>
-    
+
   );
 }
 
