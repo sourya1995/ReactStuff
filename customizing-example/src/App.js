@@ -8,7 +8,7 @@ import Homepage from './components/Routes/Homepage';
 import AboutLittleLemon from './components/Routes/AboutLittleLemon';
 
 function App() {
-
+  App2();
  
   return (
    <div>
@@ -29,3 +29,13 @@ function App() {
 }
 
 export default App;
+
+
+function App2(){
+  return (
+    <div>
+      <h1>Task: add an image below</h1>
+      <img src={logo} alt="Logo" />
+    </div>
+  );
+};
