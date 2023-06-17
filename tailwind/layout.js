@@ -24,4 +24,11 @@
         <div class="text-center w-1/5 order-4">Right Sidebar</div>
         <div class="w-full order-5">Footer</div>
     </div>
+    
+    /*this is on large screens */
+    <div class="w-full hidden lg:flex lg:flex-grow, lg:items-center lg:width-auto
+     divide-black divide-y lg:divide-y-0" id="navbar-menu">
+        <a class="block lg:mr-4 p-2 hover:bg-gray-200">Blog</a>
+        ...
+    </div>
 </>
