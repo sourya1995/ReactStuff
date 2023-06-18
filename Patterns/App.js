@@ -4,7 +4,7 @@ import './App.css'
 import useEffectAfterMount from './useEffectAfterMount.js'
 
 function App () {
-    const { expanded, toggle } = useExpanded()
+    const { expanded, toggle } = useExpanded(true)
     useEffectAfterMount(
         () => {
             console.log('Yay! button clicked!');
@@ -12,7 +12,11 @@ function App () {
     )
     return (
       <div style={{ marginTop: '3rem' }}>
-        <button onClick={toggle}>Click to view awesomeness...</button>
+        <button {...getTogglerProps({
+            id: 'my-btn-id',
+            'aria-label': 'custom toggler',
+            onClick: customClickHandler
+        })}>Click to view awesomeness...</button>
         {expanded ? <p>{'😎'.repeat(50)}</p> : null}
       </div>
     )
