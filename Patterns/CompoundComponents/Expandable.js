@@ -4,19 +4,23 @@ import Header from './Header';
 export const ExpandableContext = createContext();
 const { Provider } = ExpandableContext;
 
-const Expandable = ({ children, onExpand, className = '', ...otherProps }) => {
+const Expandable = ({ children, onExpand, className = '', shouldExpand,  ...otherProps }) => {
+    const isExpandControlled = shouldExpand !== undefined
     const [expanded, setExpanded] = useState(false);
     const toggle = useCallback(() => setExpanded(prevExpanded => !prevExpanded), []);
+    const getToggle = isExpandControlled ? onExpand : toggle
     const componentJustMounted = useRef(true)
     useEffect(
         () => {
-            if (!componentJustMounted.current) { //current value is retrieved 
+            if (!componentJustMounted && !isExpandControlled) { //current value is retrieved 
                 onExpand(expanded)
+                componentJustMounted.current = false;
             }
-            componentJustMounted.current = false;
-        }, [expanded]
+            
+        }, [expanded, onExpand, isExpandControlled]
     ); //set current value - which will remain constant
-    const value = useMemo(() => ({ expanded, toggle }), [expanded, toggle]);
+    const value = useMemo(() => ({ expanded: getState, toggle: getToggle }), [getState, getToggle]);
+    const getState = isExpandControlled ? shouldExpand : expanded
     const combinedClassName = ['Expandable', className].join(' ');
     return (
         <Provider value={value}>
