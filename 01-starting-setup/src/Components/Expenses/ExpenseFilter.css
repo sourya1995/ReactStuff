@@ -1,0 +1,4 @@
+setUserInput({
+    ...userInput,
+    enteredAmount: event.target.value,
+});
