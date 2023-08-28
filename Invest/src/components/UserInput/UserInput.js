@@ -7,7 +7,7 @@ const initialUserInput = {
     'duration': 10
 };
 
-const UserInput = () => {
+const UserInput = (props) => {
 
 
 
@@ -15,6 +15,7 @@ const UserInput = () => {
 
     const submitHandler = (event) => {
         event.preventDefault();
+        props.onCalculate(userInput);
     };
 
     const resetHandler = (event) => {
