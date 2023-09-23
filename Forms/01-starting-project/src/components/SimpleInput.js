@@ -9,6 +9,9 @@ const SimpleInput = (props) => {
 
   const formSubmissionHandler = event => {
     event.preventDefault(); //do nothing, don't send a POST request
+    if(enteredName.trim() == ''){
+      return;
+    }
     const enteredValue = nameInputRef.current.value;
     //nameInputRef.current.value = ''; //direct manipulation of the DOM, not good!
     setEnteredName('');
