@@ -8,7 +8,9 @@ import { useEffect, useState } from 'react';
 const AvailableMeals = () => {
 
   const [meals, setMeals] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   useEffect (() => {
+  
     const fetchMeals = async () =>{
     const response = await fetch('https://react-http-cb45a-default-rtdb.firebaseio.com/meals.json');
     const responseData = await response.json();
@@ -21,11 +23,20 @@ const AvailableMeals = () => {
         price: responseData[key].price,
       });
     };
+    setMeals(loadedMeals);
+    setIsLoading(false);
 
   };
-  setMeals(loadedMeals);
+  
   fetchMeals();
 }, []);
+
+if(isLoading) {
+  return <section className={classes.MealsLoading}>
+    <p>Loading...</p>
+  </section>
+}
+
   const mealsList = DUMMY_MEALS.map((meal) => (
     <MealItem
       key={meal.id}
