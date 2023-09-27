@@ -1,9 +1,11 @@
 import { useRouteLoaderData, useParams } from 'react-router-dom';
+import EventsList from '../components/EventsList';
 function EventDetailPage() {
     const data = useRouteLoaderData('event-detail');
     return (
         <div>
             <EventItem event={data.event}/>
+            <EventsList />
         </div>
     );
 }
