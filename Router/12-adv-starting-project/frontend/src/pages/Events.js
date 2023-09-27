@@ -1,13 +1,17 @@
+import { useEffect, useState } from 'react';
+
+import EventsList from '../components/EventsList';
+import { useLoaderData } from 'react-router-dom';
 
 function EventsPage() {
-    return (
-        <div>
-            <h1>EventsPage</h1>;
-            <ul>
-                {DUMMY_EVENTS.map((event) => <li key={event.id}><Link to={event.id}>{event.title}</Link></li>)}
-            </ul>
-        </div>
-    );
+    const events = useLoaderData();
+
+  
+  return (
+    <>
+       <EventsList events={events} />
+    </>
+  );
 }
 
 export default EventsPage;
