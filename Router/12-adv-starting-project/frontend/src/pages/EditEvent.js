@@ -1,7 +1,10 @@
+import EventForm from "../components/EventForm";
+
 function EditEventPage() {
+    const data = 
     return (
         <div>
-            <h1>EditEventPage</h1>;
+            <EventForm />;
         </div>
     );
 }
