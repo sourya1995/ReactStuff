@@ -31,6 +31,7 @@ import EventsPage, { loader as eventsLoader } from "./pages/Events";
 const router = createBrowserRouter([
   {
     path: '/', element: <RootLayout />,
+    errorElement: <ErrorPage />,
     children: [
       { index: true, element: <HomePage /> },
       {
