@@ -20,6 +20,7 @@ export async function getStaticPaths() {
 
     const selectedMeetup = meetupsCollection.findOne({ _id: ObjectId(meetupId) });
     return {
+        fallback: 'blocking', //no 404 response, generate a page on demand + cache 
         props: {
             meetupData: {
                 id: selectedMeetup._id.toString(),
