@@ -18,9 +18,17 @@ export async function getStaticProps(){
     //access filesystem  or DB
     //non-client code
 
+    MongoClient.connect(); //DB connection code
+    const meetups = await meetupsCollection.find().toArray();
+
     return {
         props: {
-            meetups: DUMMY_MEETUPS
+            meetups: meetups.map(meetup => ({
+                title: meetup.title,
+                address: meetup.address,
+                Image: meetup.image,
+                id:  meetup._id.toString(),
+            }))
         },
         revalidate: 10
     };
