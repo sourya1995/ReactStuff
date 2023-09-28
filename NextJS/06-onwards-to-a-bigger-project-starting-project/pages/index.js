@@ -2,7 +2,12 @@ import { useEffect } from "react";
 
 function HomePage(){
     return (
+        
         <div>
+            <Head>
+                <title>React Meetups</title>
+                <meta name="description" content="some description" />
+            </Head>
             <Layout><MeetupList meetups={loadedMeetups} /></Layout>
         </div>
     )
