@@ -1,4 +1,4 @@
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, redirect, useNavigate, useNavigation, useParams } from 'react-router-dom'
 
 import Modal from '../UI/Modal.jsx'
 import EventForm from './EventForm.jsx'
@@ -11,10 +11,13 @@ export default function EditEvent () {
 
   const navigate = useNavigate()
   const params = useParams()
+  const submit = useSubmit()
+  const { state } = useNavigation()
 
   const { data, isPending, isError, error } = useQuery({
     queryKey: ['events', params.id],
-    queryFn: ({ signal }) => fetchEvent({ signal, id: params.id })
+    queryFn: ({ signal }) => fetchEvent({ signal, id: params.id }),
+    staleTime: 10000
   })
 
   const { mutate } = useMutation({
@@ -37,8 +40,7 @@ export default function EditEvent () {
   });
 
   function handleSubmit (formData) {
-    mutate({id: params.id, event: formData});
-    navigate('../');
+    submit(formData, {method: 'PUT'});
   }
 
   function handleClose () {
@@ -47,13 +49,7 @@ export default function EditEvent () {
 
   let content
 
-  if (isPending) {
-    content = (
-      <div className='center'>
-        <LoadingIndicator />
-      </div>
-    )
-  }
+  
 
   if (error) {
     content = (
@@ -73,6 +69,7 @@ export default function EditEvent () {
 
   if (data) {
     <EventForm inputData={data} onSubmit={handleSubmit}>
+      {state === 'submitting' ? <p>Sending data...</p> : }
       <Link to='../' className='button-text'>
         Cancel
       </Link>
@@ -83,4 +80,20 @@ export default function EditEvent () {
   }
 
   return <Modal onClose={handleClose}>{content}</Modal>
+}
+
+export function loader({params}){
+  return queryClient.fetchQuery({
+    queryKey: ['events', params.id],
+    queryFn: ({ signal }) => fetchEvent({ signal, id: params.id })
+   
+  });
+}
+
+export async function action({request, params}) {
+  const formData = await request.formData();
+  const updatedEventData = Object.fromEntries(formData);
+  await updateEvent({id: params.id, event: updatedEventData });
+  await queryClient.invalidateQueries(['events']);
+  return redirect('../');
 }
