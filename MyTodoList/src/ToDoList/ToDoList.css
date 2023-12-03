@@ -1,0 +1,61 @@
+:root {
+    --brand-color: #0ea5e9;
+    --dark-color: #0f172a;
+    --mid-color: #cbd5e1;
+    --light-color: #ffffff;
+  }
+
+  .appToDoHolder {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    list-style-type: none;
+    justify-content: center;
+  }
+
+  .appToDo {
+    background-color: var(--dark-color);
+    color: var(--mid-color);
+    font-size: 2rem;
+    margin: 0.5em;
+    border-radius: 10px;
+    padding: 2em;
+  }
+
+  .appToDo:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+
+  
+.appDelete {
+    cursor: pointer;
+    font-size: 1.1rem;
+    margin: 1em 0 0 0;
+    padding: 0.5em 1em;
+    border-radius: 10px;
+    font-weight: bolder;
+    color: var(--dark-color);
+    border: none;
+  }
+  
+  .appDelete:hover {
+    color: var(--light-color);
+    background-color:#5b6b8c;
+  }
+
+  .appRemoveAll {
+    background-color: purple;
+    color: var(--light-color);
+    font-size: 1.1rem;
+    font-weight: bolder;
+    border-radius: 10px;
+    border: none;
+    display:flex;
+    margin: 0 auto;
+    padding: 0.5em 1em;
+    cursor: pointer;
+  }
+
+  .appRemoveAll:hover {
+    color: var(--light-color);
+    background-color: rgb(154, 39, 154);
+  }

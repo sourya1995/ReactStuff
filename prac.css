@@ -1,0 +1,60 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+    height: 30px;
+}
+
+.logo {
+    height: 30px;
+    background-color: lightgreen;
+    flex-basis: 485px;
+}
+
+.main-navigation {
+    height: 30px;
+    background-color: lightsteelblue;
+    display: none;
+    flex-basis: 243px;
+}
+
+.hamburger-box {
+    display: inline-block;
+    width: 30px;
+    min-width: 30px;
+    height: 30px;
+    background-color: aqua;
+}
+
+
+
+@media screen and (min-width: 768px) {
+    .hamburger-box {
+        display: none;
+    }
+
+    .logo {
+        flex-grow: 2;
+    }
+
+    .main-navigation {
+        display: block;
+        flex-grow: 1;
+    }
+
+    .flex-container {
+        display: flex;
+        justify-content: space-evenly;
+    }
+    
+    .flex-item {
+        display: inline-block;
+        list-style: none;
+    }
+}
