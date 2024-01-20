@@ -1,5 +1,7 @@
 
 import './App.css';
+import Header from './components/Header';
+import Post from './components/Post';
 import Barry from './otters/otter1.jpg';
 import Robin from './otters/otter2.jpg';
 import Maurice from './otters/otter3.jpg';
@@ -8,17 +10,10 @@ import Barbara from './otters/otter5.jpg';
 
 function App() {
   return (
-  <div>
-      <header className='header-component'>
-        <h1>Ottergram</h1>
-      </header>
+    <div>
+      <Header />
       <ul className='post-list'>
-        <li className='post-component'>
-          <button>
-            <img src={Barry} alt='Barry' />
-            <p>Barry</p>
-          </button>
-        </li>
+        <Post />
         <li className='post-component'>
           <button>
             <img src={Robin} alt='Robin' />
