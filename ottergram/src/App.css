@@ -49,6 +49,11 @@ body {
   cursor: pointer;
 }
 
+.post-component .post-name {
+  font-weight: bold;
+  font-size: 2em;
+}
+
 .app-content {
   display: flex;
   flex-direction: row;
